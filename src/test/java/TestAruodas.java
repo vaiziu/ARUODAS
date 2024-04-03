@@ -200,8 +200,7 @@ public class TestAruodas {
 //        WebElement order= _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/div[9]/div/div/button"));
 //        Assert.assertEquals(order.getText(), "UŽSAKYTI"); KAIP PATIKRINTI SU ASSERT
 
-
-
+// SUSIZIURETI PAVEIKSLIUKA IR SU ASSERT PATIKRINIMA
 
     }
 
