@@ -160,6 +160,7 @@ public class TestAruodas {
 
         _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[39]/div/div[1]/a")). click();//ikelti foto
 
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[3]/div[1]/form/div[1]/div[8]/div[7]/label/a/span[2]/input")).sendKeys("C:\\Users\\Kaspis\\Desktop\\picture.png");//įkelti nuotraukas
 
 
 
