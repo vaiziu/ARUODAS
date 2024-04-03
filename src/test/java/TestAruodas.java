@@ -2,10 +2,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class TestAruodas {
@@ -22,6 +24,29 @@ public class TestAruodas {
 //        _globalDriver.close();
 //        }
 
+    public static String generateRandomEmail() {
+        String[] domains = {"gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "example.com"};
+
+        String[] characters = {"abcdefghijklmnopqrstuvwxyz", "0123456789"};
+
+        Random random = new Random();
+
+        StringBuilder email = new StringBuilder();
+        int usernameLength = random.nextInt(10) + 5; // Random length between 5 to 14 characters
+        for (int i = 0; i < usernameLength; i++) {
+            String characterSet = characters[random.nextInt(2)]; // Selecting either alphabets or numbers
+            char randomChar = characterSet.charAt(random.nextInt(characterSet.length()));
+            email.append(randomChar);
+        }
+
+        email.append("@");
+
+        String randomDomain = domains[random.nextInt(domains.length)];
+
+        email.append(randomDomain);
+
+        return email.toString();
+    }
 
     @Test
     public void testingSearch() {
@@ -158,9 +183,23 @@ public class TestAruodas {
         WebElement description= _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[37]/div/div[1]/textarea"));
         description.sendKeys("puiki lokacija, rami aplinka");
 
-        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[39]/div/div[1]/a")). click();//ikelti foto
+//        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[39]/div/div[1]/a")). click();//ikelti foto
 
-        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[3]/div[1]/form/div[1]/div[8]/div[7]/label/a/span[2]/input")).sendKeys("C:\\Users\\Kaspis\\Desktop\\picture.png");//įkelti nuotraukas
+//        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[3]/div[1]/form/div[1]/div[8]/div[7]/label/a/span[2]/input")).sendKeys("C:\\Users\\Kaspis\\Desktop\\picture.png");//įkelti nuotraukas NEIKELIA
+
+        _globalDriver.findElement(By.id("priceField")).sendKeys("600");// kaina menesiui
+
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[47]/span[1]/input")).sendKeys("61200011");// telefono nr
+
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[48]/span[1]/input")).sendKeys(generateRandomEmail());// email. skelbimo redagavimui
+
+        _globalDriver.findElement(By.xpath(" /html/body/div[1]/div[2]/form/ul/li[51]/span[1]/div/div/label/span")).click();//sutikti su taisyklemis
+
+        _globalDriver.findElement(By.id("submitFormButton")).click();
+
+//        WebElement order= _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/div[9]/div/div/button"));
+//        Assert.assertEquals(order.getText(), "UŽSAKYTI"); KAIP PATIKRINTI SU ASSERT
+
 
 
 
