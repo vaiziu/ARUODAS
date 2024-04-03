@@ -9,22 +9,22 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 public class TestAruodas {
-    WebDriver _globalDriver;
+        WebDriver _globalDriver;
 
-    @BeforeTest
-    public void setUp() {
-        _globalDriver = new ChromeDriver();
-        _globalDriver.get("https://m.aruodas.lt/");
-    }
+        @BeforeTest
+        public void setUp() {
+            _globalDriver = new ChromeDriver();
+            _globalDriver.get("https://m.aruodas.lt/");
+        }
 
-    @AfterTest
-    public void setUp2(){
-    _globalDriver.close();
-    }
+//        @AfterTest
+//        public void setUp2(){
+//        _globalDriver.close();
+//        }
 
 
     @Test
-    public void testingBuyFlat() {
+    public void testingSearch() {
         _globalDriver.get("https://m.aruodas.lt/");
         try {
             TimeUnit.SECONDS.sleep(2);
@@ -83,6 +83,100 @@ public class TestAruodas {
         search.click();
 
     }
+
+    @Test
+    public void testingAnnouncement() {
+        _globalDriver.get("https://www.aruodas.lt/");
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        WebElement cookieButton = _globalDriver.findElement(By.xpath("/html/body/div[9]/div[2]/div/div[1]/div/div[2]/div/button[2]"));
+        cookieButton.click();
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        WebElement insertAnnouncemet= _globalDriver.findElement(By.xpath("/html/body/div[1]/div[3]/div[3]/div/div/a"));
+        insertAnnouncemet.click();
+
+        WebElement chooseFlat= _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/ul/li[2]/ul/li[1]"));
+        chooseFlat.click();
+
+        WebElement forRent= _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/ul/li[3]/ul/li[2]"));
+        forRent.click();
+
+        WebElement chooseRegion= _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[3]/span[1]/input[2]"));
+        chooseRegion.click();
+
+        WebElement chooseCity= _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[3]/span[1]/ul[2]/li[3]"));
+        chooseCity.click();
+
+        WebElement quartal= _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[5]/span[1]/span[2]"));
+        quartal.click();
+
+        WebElement chooseQuartal= _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[5]/span[1]/ul[3]/li[28]"));
+        chooseQuartal.click();
+
+        WebElement street= _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[6]/span[1]/input[2]"));
+        street.click();
+
+        WebElement chooseStreet= _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[6]/span[1]/ul[3]/li[124]"));
+        chooseStreet.click();
+
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[7]/span[1]/input")).sendKeys("1"); //namo nr
+
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[14]/span[2]/input")).sendKeys("35"); // buto plotas
+
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[15]/div/div[1]/div[2]")).click(); //kambariu skaicius
+/// iki cia veikia
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[17]/div[1]/span[2]/span")).click(); //aukstai
+
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[17]/div[1]/span[2]/ul/li[1]")).click();// aukstas 1
+
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[17]/div[2]/span[1]/span")).click(); //
+
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[17]/div[2]/span[1]/ul/li[5]")).click(); // 5as aukstas
+
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[18]/div[1]/span[1]/span/input")).sendKeys("1964"); // statybos metai
+
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[19]/div/div[2]/div[2]")).click(); // pastato tipas
+
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[20]/div/div[1]/div[2]")).click(); //irengimas
+
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[22]/div/div[1]/label/span")).click();// centrinis
+
+        WebElement description= _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[37]/div/div[1]/textarea"));
+        description.sendKeys("puiki lokacija, rami aplinka");
+
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[39]/div/div[1]/a")). click();//ikelti foto
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
