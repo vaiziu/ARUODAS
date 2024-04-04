@@ -193,7 +193,7 @@ public class TestAruodas {
 
         _globalDriver.findElement(By.id("priceField")).sendKeys("600");// kaina menesiui
 
-        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[47]/span[1]/input")).sendKeys("61200011");// telefono nr
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[47]/span[1]/input")).sendKeys("67494985");// telefono nr
 
         _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[48]/span[1]/input")).sendKeys(generateRandomEmail());// email. skelbimo redagavimui
 
@@ -201,18 +201,104 @@ public class TestAruodas {
 
         _globalDriver.findElement(By.id("submitFormButton")).click();
 
-//        WebElement order= _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/div[9]/div/div/button"));
-//        Assert.assertEquals(order.getText(), "UŽSAKYTI"); KAIP PATIKRINTI SU ASSERT
-
-// SUSIZIURETI PAVEIKSLIUKA IR SU ASSERT PATIKRINIMA
+        WebElement order= _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/div[9]/div/div/button"));
+        Assert.assertEquals(order.getText(), "UŽSAKYTI"); //KAIP PATIKRINTI SU ASSERT
+// SUSIZIURETI SU ASSERT PATIKRINIMA
 
     }
 
 
+    @Test
+    public void testingRegistration() {
+        _globalDriver.get("https://www.aruodas.lt/");
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        WebElement cookieButton = _globalDriver.findElement(By.xpath("/html/body/div[9]/div[2]/div/div[1]/div/div[2]/div/button[2]"));
+        cookieButton.click();
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/div[2]/div[1]/div[1]")).click();//mygtukas Prisijungti
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        _globalDriver.findElement(By.xpath("/html/body/div[8]/div/div[10]/div/div/div/div[2]/div[2]/div[1]/a")).click();//registruotis
+        _globalDriver.findElement(By.id("userName")).sendKeys("nonamevzs@gmail.com");// email
+        _globalDriver.findElement(By.id("password")).sendKeys("1*2NTtestavimas"); //slaptazodis
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/div/div[2]/div/div[2]/div/div/form/button")).click(); //Registruotis(galutini zingnis)
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+        @Test
+        public void testingWrongEmail() {
+            _globalDriver.get("https://www.aruodas.lt/");
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            WebElement cookieButton = _globalDriver.findElement(By.xpath("/html/body/div[9]/div[2]/div/div[1]/div/div[2]/div/button[2]"));
+            cookieButton.click();
+            _globalDriver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/div[2]/div[1]/div[1]")).click();//mygtukas Prisijungti
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            _globalDriver.findElement(By.xpath("/html/body/div[8]/div/div[10]/div/div/div/div[2]/div[2]/div[1]/a")).click();//registruotis
+            _globalDriver.findElement(By.id("userName")).sendKeys("asesu.elpastas");// blogas email formatas
+                _globalDriver.findElement(By.id("password")).sendKeys("slaptazodis123"); //slaptazodis
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/div/div[2]/div/div[2]/div/div/form/button")).click(); //Registruotis(galutini zingnis)
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            String notRegistered= _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/div/div[2]/div/div[2]/div/div/form/div[1]")).getText();
+            Assert.assertEquals(notRegistered, "Neteisingas el. pašto adresas");
+        }
 
 
-
-
+//    @Test
+//    public void test2() {
+//        _globalDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+//        WebElement cookieButton = _globalDriver.findElement(By.xpath("/html/body/div[9]/div[2]/div/div[1]/div/div[2]/div/button[2]"));
+//        cookieButton.click();
+//        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/div[2]/div[1]/div[1]")).click();
+//        _globalDriver.findElement(By.xpath("/html/body/div[8]/div/div[10]/div/div/div/div[2]/div[2]/div[1]/a")).click();
+//        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/div/div[2]/div/div[2]/div/div/form/div[1]/div[2]/input")).sendKeys("e.skelaite");
+//        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/div/div[2]/div/div[2]/div/div/form/div[2]/div[2]/input")).sendKeys("Kamuolys55");
+//        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/div/div[2]/div/div[2]/div/div/form/button")).click();
+//        try {
+//            TimeUnit.SECONDS.sleep(5);// palaukiam X sec kol puslapis uzsikraus, stabdomas testas, ne narsykle
+//
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        String notRegistrated = _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/div/div[2]/div/div[2]/div/div/form/div[1]")).getText();
+//        Assert.assertEquals(notRegistrated, "Neteisingas el. pašto adresas");
+//        //siuo atveju testas pass'ina, jeigu butu expected "Registracija sekminga", tuomet testas fail'intu
 
 
 
