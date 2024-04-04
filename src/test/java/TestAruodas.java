@@ -354,9 +354,43 @@ public class TestAruodas {
         }
         _globalDriver.findElement(By.id("submitEvaluateButton")).click();//siusti busto ivertinima
 
-
-
     }
+
+
+    @Test
+    public void testingNewProjects() {
+        _globalDriver.get("https://www.aruodas.lt/");
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        WebElement cookieButton = _globalDriver.findElement(By.xpath("/html/body/div[9]/div[2]/div/div[1]/div/div[2]/div/button[2]"));
+        cookieButton.click();
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[3]/div[3]/div/ul/li[2]/a")).click();// nauji prjektai
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[3]/div[5]/div/div[1]/div[2]/div[3]")).click();//kaunas
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[3]/div[5]/div/div[2]/div[2]/div[9]")).click();//zemutiniai kaniukai
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[3]/div[5]/div/div[3]/div[2]/div[3]/a")).click();//patalpos  pardavimui
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[3]/div[5]/div/div[4]/div/div")).click();//rodyti zemelapy
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        WebElement iframe = _globalDriver.findElement(By.xpath("/html/body/div[11]/iframe"));//iframe visa judėjimo erdvė
+        _globalDriver.switchTo().frame(iframe);
+
+        WebElement name = _globalDriver.findElement(By.xpath("/html/body/div[2]/ul/li/div/a[2]/div/div[1]"));
+        Assert.assertEquals(name.getText(),"„Pušų apartamentai“" );
+    }
+
+
+
+
+
+
+
 
 
 }
