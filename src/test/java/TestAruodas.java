@@ -183,9 +183,13 @@ public class TestAruodas {
         WebElement description= _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[37]/div/div[1]/textarea"));
         description.sendKeys("puiki lokacija, rami aplinka");
 
-//        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[39]/div/div[1]/a")). click();//ikelti foto
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/form/ul/li[39]/div/div[1]/a/input")).sendKeys("C:\\Users\\Kaspis\\Downloads\\fiat-500-4322521_640.jpg");
+        try {
+            TimeUnit.SECONDS.sleep(15);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-//        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[3]/div[1]/form/div[1]/div[8]/div[7]/label/a/span[2]/input")).sendKeys("C:\\Users\\Kaspis\\Desktop\\picture.png");//įkelti nuotraukas NEIKELIA
 
         _globalDriver.findElement(By.id("priceField")).sendKeys("600");// kaina menesiui
 
